@@ -9,13 +9,14 @@ export class PixabayAPI{
 #BASE_URL = 'https://pixabay.com/api/'; 
         page = 1;  
         q = null;
+        per_page = 40;
 
         fetchPhoto() {
                 return axios.get(`${this.#BASE_URL}?key=${this.#API_KEY}`, {
                         params: {
                         page: this.page,
                         q: this.q,
-                        per_page: 40,
+                        per_page: this.per_page,
                         image_type: 'photo',
                         orientation: 'horizontal',
                         safesearch: true,       
