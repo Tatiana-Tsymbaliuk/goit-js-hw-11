@@ -103,8 +103,7 @@ color: #a45783;
 
 
  }
-.load-more:hover,
-.load-more:focus {
+.load-more:hover {
 background-color: #a45783 ;
 color: #ffffff;
         }

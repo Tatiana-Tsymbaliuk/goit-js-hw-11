@@ -14,15 +14,15 @@ const handleSearchPhotos =  async event => {
       
 const searchQuery = event.target.elements['searchQuery'].value.trim();
         fotoPixabayAPI.q = searchQuery;
-        
+            if (searchQuery === '') {
+    return;
+  }
         try {
                 const { data } = await fotoPixabayAPI.fetchPhoto(); 
  photoWrapperEl.innerHTML = createPhotosCard(data.hits);  
-                let currentHits = data.hits.length;
-                 if (searchQuery === '') {
-    return;
-  }
-                        if (!currentHits) {                      
+                
+             
+                        if (!data.hits.length) {                      
                          Notify.failure('Sorry, there are no images matching your search query. Please try again.');
                         return;                              
                          }  Notify.success(`Hooray! We found ${data.totalHits} images.`);                           
@@ -51,7 +51,7 @@ fotoPixabayAPI.page += 1;
                   
                 } loadMoreBt.classList.remove('is-hidden');   
           
-         if (currentHits === data.totalHits) {
+         if (data.hits.length === data.totalHits) {
     loadMoreBt.classList.add('is-hidden');
                  endText.classList.remove('is-hidden');
                  return;
