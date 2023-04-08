@@ -20,7 +20,7 @@ img {
        gap: 20px;
            
 } 
-.load-more.is-hidden {
+.is-hidden {
         display: none;
 }
 .search-form{
