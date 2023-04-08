@@ -1,6 +1,10 @@
 import { PixabayAPI } from './pixabay-api';
 import createPhotosCard from './template/photos.hbs'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// Описан в документации
+import SimpleLightbox from "simplelightbox";
+// Дополнительный импорт стилей
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const photoWrapperEl = document.querySelector('.gallery');
 const loadMoreBt = document.querySelector('.load-more');
@@ -20,7 +24,7 @@ const searchQuery = event.target.elements['searchQuery'].value.trim();
         try {
                 const { data } = await fotoPixabayAPI.fetchPhoto(); 
  photoWrapperEl.innerHTML = createPhotosCard(data.hits);  
-                
+lightbox.refresh();              
              
                         if (!data.hits.length) {                      
                          Notify.failure('Sorry, there are no images matching your search query. Please try again.');
@@ -65,7 +69,7 @@ fotoPixabayAPI.page += 1;
 searchFormEl.addEventListener('submit', handleSearchPhotos);
 loadMoreBt.addEventListener('click', handleLoadPhoto);
 
-
+const lightbox = new SimpleLightbox(`.gallery__item`, { captionsData: "alt", captionDelay: 250, captions: true });
 
 
 
