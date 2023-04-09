@@ -29,6 +29,7 @@ lightbox.refresh();
                         if (!data.hits.length) {                      
                                 Notify.failure('Sorry, there are no images matching your search query. Please try again.');
                                 loadMoreBt.classList.add('is-hidden');
+                                endText.classList.add('is-hidden');
                         return;                              
                          }  Notify.success(`Hooray! We found ${data.totalHits} images.`);                           
                         loadMoreBt.classList.remove('is-hidden');
